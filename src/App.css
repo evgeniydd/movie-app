@@ -1,0 +1,134 @@
+@import url('https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;600&family=Poppins:wght@200;400;600&display=swap');
+
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+body {
+  background: linear-gradient(94deg, rgba(30, 41, 49, 1) 0%, rgba(58, 76, 88, 1) 100%);
+  color: white;
+  font-family: 'Poppins', sans-serif;
+  margin: 0;
+}
+.movie-list {
+  display: grid;
+  grid-template-columns: repeat(8, 1fr);
+  gap: 15px;
+  padding: 30px;
+}
+
+.movie {
+  cursor: pointer;
+  background-color: transparent;
+  max-width: 250px;
+  height: 360px;
+  perspective: 1000px;
+  margin-bottom: 30px;
+  border-radius: 10px;
+}
+
+.movie-title {
+  font-size: 14px;
+  padding: 5px;
+}
+
+.movie img {
+  width: 100%;
+  height: 300px;
+  object-fit: cover;
+  border-radius: 10px;
+  -webkit-box-shadow: 0px 0px 8px 1px rgba(0, 0, 0, 0.84);
+  -moz-box-shadow: 0px 0px 8px 1px rgba(0, 0, 0, 0.84);
+  box-shadow: 0px 0px 8px 1px rgba(0, 0, 0, 0.84);
+}
+
+.movie-inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  transition: transform 0.8s;
+  transform-style: preserve-3d;
+}
+
+.movie:hover .movie-inner {
+  transform: rotateY(180deg);
+}
+.movie-front {
+  position: relative;
+}
+.movie-vote {
+  position: absolute;
+  bottom: 15%;
+  right: -5%;
+  background: #f98d14;
+  width: 30px;
+  height: 30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50%;
+  font-size: 13px;
+  padding: 4px;
+}
+.movie-front,
+.movie-back {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+}
+
+.movie-back {
+  background-color: rgba(69, 78, 83, 0.356);
+  color: #fff;
+  padding: 20px;
+  border-radius: 10px;
+  transform: rotateY(180deg);
+}
+.movie-overview {
+  font-size: 12px;
+}
+@media (max-width: 1280px) {
+  .movie-list {
+    grid-template-columns: repeat(6, 1fr);
+  }
+}
+@media (max-width: 1028px) {
+  .movie-list {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+@media (max-width: 800px) {
+  .movie-list {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 500px) {
+  .movie-list {
+    grid-template-columns: 1fr;
+  }
+  .movie img {
+    width: 100%;
+    height: 300px;
+    object-fit: cover;
+  }
+}
+
+/* .movie-vote {
+  position: absolute;
+  right: -16px;
+  bottom: 25%;
+  width: 36px;
+  height: 36px;
+  background: #f28a2c;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 6px;
+  font-size: 13px;
+} */
