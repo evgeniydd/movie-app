@@ -1,36 +1,40 @@
 import './App.css';
 import { useEffect, useState } from 'react';
-import Movie from './components/Movie';
+
+import MovieList from './components/MovieList';
+import SearchMovie from './components/SearchMovie';
 
 const FEATURED_API =
   'https://api.themoviedb.org/3/discover/movie?sort_by=popularity.desc&api_key=04c35731a5ee918f014970082a0088b1&page=1';
 
-const SEARCH_API = 'https://api.themoviedb.org/3/discover/movie?&api_key=04c35731a5ee918f014970082a0088b1&query=';
+const SEARCH_API = 'https://api.themoviedb.org/3/search/movie?&api_key=04c35731a5ee918f014970082a0088b1&query=';
 
 function App() {
   const [movies, setMovies] = useState([]);
+  const [searchTerm, setsearchTerm] = useState('');
 
-  useEffect(() => {
-    fetch(FEATURED_API)
-      .then((res) => res.json())
-      .then((data) => {
-        console.log(data.results);
-        setMovies(data.results);
-      });
-  }, []);
+  const handlerOnSubmit = (e) => {
+    e.preventDefault();
+
+    if (searchTerm) {
+      fetch(SEARCH_API + searchTerm.toLowerCase())
+        .then((res) => res.json())
+        .then((data) => {
+          setMovies(data.results);
+        });
+    }
+    setsearchTerm('');
+    console.log(movies.length);
+  };
+
+  const handleOnChange = (e) => {
+    setsearchTerm(e.target.value);
+  };
 
   return (
-    <div className='movie-list'>
-      {movies.length > 0 &&
-        movies.map((movie) => (
-          <Movie
-            overview={movie.overview}
-            key={movie.id}
-            poster_path={movie.poster_path}
-            title={movie.title}
-            vote_average={movie.vote_average}
-          />
-        ))}
+    <div className='app'>
+      <SearchMovie handlerOnSubmit={handlerOnSubmit} searchTerm={searchTerm} setsearchTerm={handleOnChange} />
+      <MovieList featured_api={FEATURED_API} movies={movies} setMovies={setMovies} />
     </div>
   );
 }

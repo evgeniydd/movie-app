@@ -12,6 +12,10 @@ body {
   font-family: 'Poppins', sans-serif;
   margin: 0;
 }
+.app {
+  width: 100%;
+  padding: 0 15px;
+}
 .movie-list {
   display: grid;
   grid-template-columns: repeat(8, 1fr);
@@ -23,7 +27,7 @@ body {
   cursor: pointer;
   background-color: transparent;
   max-width: 250px;
-  height: 360px;
+  height: 320px;
   perspective: 1000px;
   margin-bottom: 30px;
   border-radius: 10px;
@@ -31,7 +35,7 @@ body {
 
 .movie-title {
   font-size: 14px;
-  padding: 5px;
+  padding: 8px 5px;
 }
 
 .movie img {
@@ -83,14 +87,56 @@ body {
 
 .movie-back {
   background-color: rgba(69, 78, 83, 0.356);
+  -webkit-box-shadow: 0px 0px 8px 1px rgba(0, 0, 0, 0.84);
+  -moz-box-shadow: 0px 0px 8px 1px rgba(0, 0, 0, 0.84);
+  box-shadow: 0px 0px 8px 1px rgba(0, 0, 0, 0.84);
   color: #fff;
-  padding: 20px;
+  padding: 10px;
   border-radius: 10px;
   transform: rotateY(180deg);
+  height: 300px;
 }
 .movie-overview {
-  font-size: 12px;
+  font-size: 11px;
 }
+.movie-vote {
+  position: absolute;
+  right: -13px;
+  bottom: 11%;
+  width: 30px;
+  height: 30px;
+  background: #f28a2c;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 6px;
+  font-size: 13px;
+}
+
+.search_movie {
+  display: flex;
+  justify-content: space-between;
+  margin: 20px 20px 0 0;
+  padding: 0 25px;
+}
+.search_movie input {
+  padding: 8px 10px;
+  border: 0;
+  outline: none;
+  border-radius: 10px;
+  width: 460px;
+  background: rgb(255, 255, 255);
+}
+.logo {
+  font-size: 30px;
+  cursor: pointer;
+}
+.logo span {
+  color: teal;
+  font-weight: bold;
+}
+
 @media (max-width: 1280px) {
   .movie-list {
     grid-template-columns: repeat(6, 1fr);
@@ -103,13 +149,20 @@ body {
 }
 @media (max-width: 800px) {
   .movie-list {
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(3, 1fr);
+  }
+  .search_movie {
+    flex-direction: column;
+    align-items: center;
+  }
+  .search_movie input {
+    width: 300px;
   }
 }
 
 @media (max-width: 500px) {
   .movie-list {
-    grid-template-columns: 1fr;
+    grid-template-columns: repeat(2, 1fr);
   }
   .movie img {
     width: 100%;
@@ -117,18 +170,8 @@ body {
     object-fit: cover;
   }
 }
-
-/* .movie-vote {
-  position: absolute;
-  right: -16px;
-  bottom: 25%;
-  width: 36px;
-  height: 36px;
-  background: #f28a2c;
-  border-radius: 50%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding: 6px;
-  font-size: 13px;
-} */
+@media (max-width: 400px) {
+  .movie-list {
+    grid-template-columns: 1fr;
+  }
+}
